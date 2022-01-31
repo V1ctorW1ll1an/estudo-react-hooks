@@ -1,43 +1,41 @@
-import { useState } from "react";
-import logo from "./logo.svg";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
-    const [reverseClass, setReverseClass] = useState(false);
-    const [count, setCount] = useState(0);
+    const [counter, setCounter] = useState(0);
 
-    const getReverseClass = (): string => (reverseClass ? "reverse" : "");
-    const increment = (): void => setCount((prevCounter) => prevCounter + 1);
-    const decrement = (): void => setCount((prevCounter) => prevCounter - 1);
+    // componentDidUpdate - executa toda vez que o component atualiza
+    useEffect(() => console.log("componentDidUpdate"));
+
+    // componentDidMount - executa uma vez quando o component é montado
+    useEffect(() => console.log("componentDidMount"), []);
+
+    // vai ser executado somente quando a sua dependência [counter] for atualizada
+    useEffect(() => console.log("counter update => ", counter), [counter]);
+    useEffect(() => console.log("counter update just message "), [counter]);
+    useEffect(() => console.log("counter update one time :", counter), []);
+
+    // functions
+    const h1Clicked = () => console.log("h1 clicado");
+
+    useEffect(() => {
+        // isso causa um efeito colateral, pois deixa um evento cadastrado em nosso
+        // component, logo precisamos limpa-lo
+        const componentH1 = document.querySelector("h1");
+        componentH1?.addEventListener("click", h1Clicked);
+
+        // limpando o addEventListener
+        return () => {
+            componentH1?.removeEventListener("click", h1Clicked);
+        };
+    }, []);
+
+    const updateCounter = () => setCounter((c) => c + 1);
 
     return (
-        <div className="App">
-            <header className="App-header">
-                <img
-                    src={logo}
-                    className={`App-logo ${getReverseClass()}`}
-                    alt="logo"
-                />
-
-                <button
-                    type="button"
-                    onClick={() => setReverseClass(!reverseClass)}
-                >
-                    Reverse {getReverseClass()}
-                </button>
-
-                <div className="counter-container">
-                    <p>Count: {count}</p>
-                    <div className="count-buttons">
-                        <button type="button" onClick={increment}>
-                            Increment
-                        </button>
-                        <button type="button" onClick={decrement}>
-                            Decrement
-                        </button>
-                    </div>
-                </div>
-            </header>
+        <div>
+            <h1>contador: {counter}</h1>
+            <button onClick={updateCounter}> + </button>
         </div>
     );
 }
