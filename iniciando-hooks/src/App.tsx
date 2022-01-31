@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
+//https://pt-br.reactjs.org/docs/hooks-rules.html
+
 function App() {
     const [counter, setCounter] = useState(0);
 
