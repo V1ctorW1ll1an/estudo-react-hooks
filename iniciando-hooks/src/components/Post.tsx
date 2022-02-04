@@ -8,7 +8,7 @@ export interface IPosts {
     body: string;
 }
 
-const Post = () => {
+const Post = (): JSX.Element => {
     const [posts, setPosts] = useState<Array<IPosts>>([]);
 
     const getPosts = async (): Promise<void> => {
