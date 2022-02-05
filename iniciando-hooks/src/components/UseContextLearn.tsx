@@ -1,17 +1,46 @@
-import { useContext } from "react";
-import { DataContext, IState } from "../context/dataContext";
+import { useContext, useState } from "react";
+import { UserContext } from "../context/user/context";
+import _ from "lodash";
 
-interface IUseContextProps {
-    counter?: number;
-}
+const UseContextLearn = (): JSX.Element => {
+    const { state, setState } = useContext(UserContext);
+    const [name, setName] = useState<string>("");
 
-const UseContextLearn = (props: IUseContextProps): JSX.Element => {
-    const currentContext: IState = useContext<IState>(DataContext);
+    function handleEditName() {
+        setState({
+            ...state,
+            name,
+        });
+    }
 
     return (
-        <div>
-            <h1>{currentContext.text}</h1>
-            <h2>{currentContext.number}</h2>
+        <div className="container p-5">
+            <input
+                type="text"
+                placeholder="Novo Nome"
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setName(e.target.value)
+                }
+            />
+
+            <button onClick={handleEditName} className="btn btn-primary ms-4">
+                change data
+            </button>
+
+            <div className="mt-5">
+                <p>
+                    <strong>name: </strong>
+                    <span>{state.name}</span>
+                </p>
+                <p>
+                    <strong>last name: </strong>
+                    <span>{state.lastName}</span>
+                </p>
+                <p>
+                    <strong>email: </strong>
+                    <span>{state.email}</span>
+                </p>
+            </div>
         </div>
     );
 };

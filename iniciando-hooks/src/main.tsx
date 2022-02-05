@@ -2,13 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import { DataContext, state } from "./context/dataContext";
+import "bootstrap/dist/css/bootstrap.css";
 
 ReactDOM.render(
     <React.StrictMode>
-        <DataContext.Provider value={state}>
-            <App />
-        </DataContext.Provider>
+        <App />
     </React.StrictMode>,
     document.getElementById("root")
 );
