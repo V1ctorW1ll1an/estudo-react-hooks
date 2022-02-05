@@ -3,14 +3,11 @@ import { UserContext } from "../context/user/context";
 import _ from "lodash";
 
 const UseContextLearn = (): JSX.Element => {
-    const { state, setState } = useContext(UserContext);
-    const [name, setName] = useState<string>("");
+    const { state, setName } = useContext(UserContext);
+    const [localName, setLocalName] = useState<string>("");
 
     function handleEditName() {
-        setState({
-            ...state,
-            name,
-        });
+        setName(localName);
     }
 
     return (
@@ -19,7 +16,7 @@ const UseContextLearn = (): JSX.Element => {
                 type="text"
                 placeholder="Novo Nome"
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setName(e.target.value)
+                    setLocalName(e.target.value)
                 }
             />
 

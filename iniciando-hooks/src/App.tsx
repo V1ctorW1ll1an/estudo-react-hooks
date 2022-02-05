@@ -1,6 +1,6 @@
 import "./App.css";
 import { UseContextLearn } from "./components/UseContextLearn";
-import { GlobalContext } from "./context";
+import { GlobalContext } from "./context/GlobalContext";
 
 function App(): JSX.Element {
     return (
