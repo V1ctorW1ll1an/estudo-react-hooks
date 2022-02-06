@@ -21,6 +21,7 @@ const Post = (): JSX.Element => {
     useEffect(() => {
         getPosts();
     }, []);
+
     return (
         <ul>
             {_.map(posts, (post: IPosts) => {

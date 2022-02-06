@@ -1,14 +1,11 @@
 import "./App.css";
-import { UseContextLearn } from "./components/UseContextLearn";
-import { GlobalContext } from "./context/GlobalContext";
+import { UseReducerLearn } from "./components/UseReducerLearn";
 
 function App(): JSX.Element {
     return (
-        <GlobalContext>
-            <div>
-                <UseContextLearn />
-            </div>
-        </GlobalContext>
+        <div>
+            <UseReducerLearn />
+        </div>
     );
 }
 
