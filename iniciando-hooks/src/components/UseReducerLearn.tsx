@@ -4,6 +4,10 @@ export enum Actions {
     Add2,
     sumWithDelta,
     changeDelta,
+    numberMulti7,
+    numberDiv25,
+    numberParseInt,
+    numberAddN,
 }
 interface IReduceState {
     delta: number;
@@ -30,6 +34,14 @@ const reducer = (state: IReduceState, action: IReduceAction) => {
             return { ...state, delta: action.payload };
         case Actions.sumWithDelta:
             return { ...state, number: state.number + state.delta };
+        case Actions.numberMulti7:
+            return { ...state, number: state.number * 7 };
+        case Actions.numberDiv25:
+            return { ...state, number: state.number / 25 };
+        case Actions.numberParseInt:
+            return { ...state, number: parseInt(`${state.number}`) };
+        case Actions.numberAddN:
+            return { ...state, number: state.number + action.payload };
         default:
             return state;
     }
@@ -60,6 +72,32 @@ const UseReducerLearn: FunctionComponent = (): JSX.Element => {
                     onClick={() => dispatch({ type: Actions.sumWithDelta })}
                 >
                     Sum with Delta
+                </button>
+                <button
+                    className="btn btn-primary mt-3"
+                    onClick={() => dispatch({ type: Actions.numberMulti7 })}
+                >
+                    *7
+                </button>
+                <button
+                    className="btn btn-primary mt-3"
+                    onClick={() => dispatch({ type: Actions.numberDiv25 })}
+                >
+                    /25
+                </button>
+                <button
+                    className="btn btn-primary mt-3"
+                    onClick={() => dispatch({ type: Actions.numberParseInt })}
+                >
+                    int
+                </button>
+                <button
+                    className="btn btn-primary mt-3"
+                    onClick={() =>
+                        dispatch({ type: Actions.numberAddN, payload: 100 })
+                    }
+                >
+                    Add 100
                 </button>
             </div>
         </div>
