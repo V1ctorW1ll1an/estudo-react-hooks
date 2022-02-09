@@ -1,10 +1,10 @@
 import "./App.css";
-import { UseReducerLearn } from "./components/UseReducerLearn";
+import { Custom } from "./components/Custom";
 
 function App(): JSX.Element {
     return (
         <div>
-            <UseReducerLearn />
+            <Custom />
         </div>
     );
 }
